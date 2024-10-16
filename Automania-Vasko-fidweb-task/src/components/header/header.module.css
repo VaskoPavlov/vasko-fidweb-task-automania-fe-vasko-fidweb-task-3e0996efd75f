@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@480');
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.user {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 17.26px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 3px 6px #00000029;
+    width: 1920px;
+    height: 63px;
+    margin: 0 auto;
+}
+
+.logoDiv {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 189.06px;
+    height: 44px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+.profile {
+    width: 23.66px;
+    height: 24.11px;
+    margin-right: 3.94px;
+}
+
+.logIn {
+    font-size: 14px;
+    color: #0C0C21;
+    text-transform: uppercase;
+    margin-right: 18px;
+}
+
+a {
+  text-decoration-line: none;
+}
+
+.verticalLine {
+    border-left: 1px solid #0C0C21;
+    height: 30px;
+    margin-right: 15px;
+}
+
+.addButton {
+    display: flex;
+    align-items: center;
+}
+
+.addListingButton {
+  top: 13px;
+  left: 1716px;
+  width: 140px;
+  height: 38px;
+  /* UI Properties */
+  background: var(--unnamed-color-1f1deb) 0% 0% no-repeat padding-box;
+  background: #1F1DEB 0% 0% no-repeat padding-box;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+.addSvg {
+  top: 23px;
+  left: 1726px;
+  width: 18px;
+  height: 18px;
+  /* UI Properties */
+  padding-top: 5px;
+  opacity: 1;
+}
+
+.addText {
+  /* Layout Properties */
+  top: 23px;
+  left: 1750px;
+  width: 96px;
+  height: 18px;
+  /* UI Properties */
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-20) var(--unnamed-font-family-montserrat);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-ffffff);
+  text-align: center;
+  font: normal normal bold 14px/20px Montserrat;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+.addListingButton span {
+    font-size: 14px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+@media (max-width: 480px) {
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background-color: #FFFFFF;
+        box-shadow: 0px 3px 6px #00000029;
+        width: 414px;
+        height: 63px;
+        margin: 0 auto;
+    }
+
+    .logo {
+        width: 120px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    .addListingButton {
+        width: 100px;
+        font-size: 10px;
+    }
+}
+
+/* Mobile-Specific Styles */
+.mobileButtons {
+    display: none; /* Hidden by default */
+}
+
+/* Person Icon Styles */
+.personLoggedIn {
+    display:inline;
+    padding-left:9px;
+    color: #0044ff; /* Blue border for logged-in user */
+}
+
+.personLoggedOut {
+    display:inline;
+    padding-left:9px;
+    color:  grey; /* Grey border for logged-out user */
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .buttons {
+        display: none; /* Hide desktop buttons on mobile */
+    }
+
+    .mobileButtons {
+        display: inline-block;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .mobileProfileIcon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .mobileAddButton {
+        background-color: blue;
+        border: none;
+        cursor: pointer;
+        margin-left: 5px;
+        border-radius: 5px;
+    }
+
+    .mobileAddIcon {
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        padding-top: 2px;
+    }
+}
