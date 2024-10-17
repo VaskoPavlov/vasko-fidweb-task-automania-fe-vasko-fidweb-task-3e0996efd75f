@@ -197,7 +197,7 @@ export default function Create() {
             {mainPhotoFile ? (
               <div className={styles.uploadedPhoto}>
                 <p>{truncateFileName(mainPhotoFile.name)}</p>
-                <button className={styles.removeButton} onClick={removeMainPhoto}>✖</button>
+                <button className={styles.removeButton} onClick={removeMainPhoto}>X</button>
               </div>
             ) : (
               <label htmlFor="mainPhotoUpload" className={styles.uploadButton}>
@@ -222,7 +222,7 @@ export default function Create() {
               {additionalPhotosFiles.map((photo, index) => (
                 <div key={index} className={styles.uploadedPhoto}>
                   <p>{truncateFileName(photo.name)}</p>
-                  <button className={styles.removeButton} onClick={() => removeAdditionalPhoto(index)}>✖</button>
+                  <button className={styles.removeButton} onClick={() => removeAdditionalPhoto(index)}>X</button>
                 </div>
               ))}
               {additionalPhotosFiles.length < 5 && (

@@ -5,6 +5,7 @@ import styles from '../create/create.module.css';
 export default function Edit() {
   const { _id } = useParams(); 
   const navigate = useNavigate();
+
   const [listingData, setListingData] = useState({
     brand: '',
     model: '',
@@ -13,10 +14,10 @@ export default function Edit() {
     additionalPhotos: [],
   });
 
+  const [mainPhotoFile, setMainPhotoFile] = useState(null);
   const [errors, setErrors] = useState({}); 
 
   useEffect(() => {
-    
     const fetchListing = async () => {
       try {
         const response = await fetch(`https://automania.herokuapp.com/listing/${_id}`);
@@ -42,7 +43,7 @@ export default function Edit() {
     if (!listingData.price || isNaN(listingData.price) || parseFloat(listingData.price) <= 0) {
       newErrors.price = 'Price must be greater than 0';
     }
-    if (!listingData.mainPhoto.trim()) newErrors.mainPhoto = 'Main photo URL is required';
+    if (!listingData.mainPhoto.trim()) newErrors.mainPhoto = 'Main photo is required';
 
     setErrors(newErrors);
     
@@ -80,17 +81,38 @@ export default function Edit() {
     }
   };
 
+  const handleMainPhotoChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setMainPhotoFile(file);
+      setListingData({ ...listingData, mainPhoto: URL.createObjectURL(file) });
+    }
+  };
+
+  const removeMainPhoto = () => {
+    setMainPhotoFile(null);
+    setListingData({ ...listingData, mainPhoto: '' });
+  };
+
+  const removeAdditionalPhoto = (index) => {
+    const updatedPhotos = listingData.additionalPhotos.filter((_, i) => i !== index);
+    setListingData({ ...listingData, additionalPhotos: updatedPhotos });
+  };
+
   return (
     <div className={styles.createListingContainer}>
       <div className={styles.header}>
-        <button onClick={() => navigate('/listing/list')} className={styles.closeButton}></button>
-        <h2>Edit Listing</h2>
+        <div className={styles.titlePlusX}>
+          <button onClick={() => navigate('/listing/list')} className={styles.closeButton}></button>
+          <h2>Edit Listing</h2>
+        </div>
         <button className={styles.saveButton} onClick={handleSaveListing}>
           Save Listing
         </button>
       </div>
       <div className={styles.divider}></div>
       <form className={styles.listingForm}>
+        <h3>GENERAL INFO</h3>
         <div className={styles.generalInfoSection}>
           <div className={styles.inputGroupBrand}>
             <label htmlFor="brand">Brand</label>
@@ -124,42 +146,65 @@ export default function Edit() {
               onChange={(e) => setListingData({ ...listingData, price: e.target.value })}
               required
             />
-            <span class={styles.currency}>BGN</span>
+            <span className={styles.currency}>BGN</span>
             </div>
             {errors.price && <p className={styles.error}>{errors.price}</p>}
           </div>
         </div>
         <div className={styles.blueDivider}></div>
+        <h3>PHOTOS</h3>
         <div className={styles.photosSection}>
-          <div className={styles.inputGroup}>
+          <div className={styles.inputGroupPhoto}>
             <label>Main Photo</label>
+            {listingData.mainPhoto ? (
+              <div className={styles.uploadedPhoto}>
+                <p>{mainPhotoFile ? mainPhotoFile.name : listingData.mainPhoto}</p>
+                <button className={styles.removeButton} onClick={removeMainPhoto}>X</button>
+              </div>
+            ) : (
+              <label htmlFor="mainPhotoUpload" className={styles.uploadButton}>
+                + UPLOAD
+              </label>
+            )}
             <input
-              type="text"
+              type="file"
               id="mainPhotoUpload"
-              className={styles.uploadButton}
-              value={listingData.mainPhoto}
-              onChange={(e) => setListingData({ ...listingData, mainPhoto: e.target.value })}
-              required
+              className={styles.fileInput}
+              onChange={handleMainPhotoChange}
+              accept="image/*"
+              style={{ display: 'none' }}
             />
             {errors.mainPhoto && <p className={styles.error}>{errors.mainPhoto}</p>}
           </div>
-          <div className={styles.inputGroup}>
+
+          {/* Additional Photos */}
+          <div className={styles.inputGroupPhoto}>
             <label>Additional Photos</label>
-            <label htmlFor="additionalPhotosUpload" className={styles.uploadButton}>+ UPLOAD</label>
+            <div className={styles.additionalPhotos}>
+              {listingData.additionalPhotos.length < 5 && (
+                <label htmlFor="additionalPhotosUpload" className={styles.uploadButton}>
+                  + UPLOAD
+                </label>
+              )}
+              {listingData.additionalPhotos.map((photo, index) => (
+                <div key={index} className={styles.uploadedPhoto}>
+                  <p>{photo}</p>
+                  <button className={styles.removeButton} onClick={() => removeAdditionalPhoto(index)}>X</button>
+                </div>
+              ))}
+            </div>
             <input
               type="file"
               id="additionalPhotosUpload"
               multiple
-              onChange={(e) => setListingData({ ...listingData, mainPhoto: e.target.value })}
+              onChange={(e) => {
+                const files = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+                setListingData({ ...listingData, additionalPhotos: [...listingData.additionalPhotos, ...files] });
+              }}
               accept="image/*"
               style={{ display: 'none' }}
             />
           </div>
-            <div className={styles.additionalPhotosList}>
-              {listingData.additionalPhotos.map((photo, index) => (
-                <p key={index}>{photo}</p>
-              ))}
-            </div>
         </div>
       </form>
     </div>

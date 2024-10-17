@@ -59,23 +59,26 @@ export default function Login() {
           </div>
           <div className={styles.inputGroup}>
             <label className={styles.labels} htmlFor="password">Password</label>
-            <input
-              type={passwordVisible ? "text" : "password"}
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <span
-              className={styles.togglePassword}
-              onClick={togglePasswordVisibility}
-            >
-              <img
-                className="eye-icon"
-                src={passwordVisible ? "../public/view-2.svg" : "../public/view.svg"}
-                alt={passwordVisible ? "Hide Password" : "Show Password"}
+            <div className={styles.passwordWrapper}>
+              <input
+                type={passwordVisible ? "text" : "password"}
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className={styles.passwordInput}
               />
-            </span>
+              <span
+                className={styles.togglePassword}
+                onClick={togglePasswordVisibility}
+              >
+                <img
+                  className={styles.eyeIcon}
+                  src={passwordVisible ? "../public/view-2.svg" : "../public/view.svg"}
+                  alt={passwordVisible ? "Hide Password" : "Show Password"}
+                />
+              </span>
+            </div>
           </div>
           {validationError && <p className={styles.error}>{validationError}</p>}
           <button type="submit" className={styles.loginButton} disabled={loading}>
