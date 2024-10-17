@@ -40,14 +40,11 @@ export default function Header() {
                     </button>
                 </div>
             </div>
-            {/* Mobile View */}
             <div className={styles.mobileButtons}>
-                {/* Person Icon */}
                 <div className={user ? styles.personLoggedIn : styles.personLoggedOut}>
                     <img className={styles.mobileProfileIcon} src={`../public/imagesAndSvgs/profile.svg`} alt="Profile" />
                 </div>
 
-                {/* Add Listing / Log In Button */}
                 <button className={styles.mobileAddButton} onClick={() => navigate(user ? handleAddListingClick : '/user/login')}>
                     <img className={styles.mobileAddIcon} src='../public/Group 19449/Group 19449.png' alt="Add Listing" />
                 </button>

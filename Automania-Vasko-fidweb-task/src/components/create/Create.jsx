@@ -188,10 +188,8 @@ export default function Create() {
         </div>
         <div className={styles.blueDivider}></div>
 
-        {/* PHOTOS SECTION */}
         <h3>PHOTOS</h3>
         <div className={styles.photosSection}>
-          {/* Main Photo */}
           <div className={styles.inputGroupPhoto}>
             <label>Main Photo</label>
             {mainPhotoFile ? (
@@ -215,7 +213,6 @@ export default function Create() {
             {errors.mainPhoto && <p className={styles.error}>{errors.mainPhoto}</p>}
           </div>
 
-          {/* Additional Photos */}
           <div className={styles.inputGroupPhoto}>
             <label>Additional Photos</label>
             <div className={styles.additionalPhotos}>

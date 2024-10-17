@@ -177,7 +177,6 @@ export default function Edit() {
             {errors.mainPhoto && <p className={styles.error}>{errors.mainPhoto}</p>}
           </div>
 
-          {/* Additional Photos */}
           <div className={styles.inputGroupPhoto}>
             <label>Additional Photos</label>
             <div className={styles.additionalPhotos}>
