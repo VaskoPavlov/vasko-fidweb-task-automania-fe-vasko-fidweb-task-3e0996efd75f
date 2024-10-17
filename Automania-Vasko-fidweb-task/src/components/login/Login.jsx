@@ -45,7 +45,7 @@ export default function Login() {
         <div className={styles.logo}>
           <img src="../public/imagesAndSvgs/Group19448.svg" alt="AUTOMANIA Logo" />
         </div>
-        <h2>WELCOME BACK</h2>
+        <h2 className={styles.h2}>WELCOME BACK</h2>
         <form className={styles.loginForm} onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
             <label className={styles.labels} htmlFor="email">Email</label>

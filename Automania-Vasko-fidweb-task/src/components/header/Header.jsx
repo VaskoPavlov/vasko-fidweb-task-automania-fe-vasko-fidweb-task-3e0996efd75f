@@ -45,7 +45,9 @@ export default function Header() {
                     <img className={styles.mobileProfileIcon} src={`../public/imagesAndSvgs/profile.svg`} alt="Profile" />
                 </div>
 
-                <button className={styles.mobileAddButton} onClick={() => navigate(user ? handleAddListingClick : '/user/login')}>
+                {/* <Link to="/user/login">
+                </Link> */}
+                <button className={styles.mobileAddButton} onClick={() => navigate(user ? '/listing/create' : '/user/login')}>
                     <img className={styles.mobileAddIcon} src='../public/Group 19449/Group 19449.png' alt="Add Listing" />
                 </button>
             </div>
