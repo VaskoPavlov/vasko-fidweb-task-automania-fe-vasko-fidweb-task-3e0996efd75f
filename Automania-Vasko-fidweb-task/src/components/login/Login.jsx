@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLogin } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom'; 
+import { useWindowWidth } from '../../hooks/useWindowWidth';
 import * as styles from './login.module.css';
 
 export default function Login() {
@@ -10,6 +11,8 @@ export default function Login() {
   const { login, user, loading, error } = useLogin();
   const [validationError, setValidationError] = useState('');
   const navigate = useNavigate();
+  
+  const isMobile = useWindowWidth();
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -40,8 +43,8 @@ export default function Login() {
   };
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.loginContainer}>
+    <div className={isMobile ? styles.mobileOverlay : styles.overlay}>
+      <div className={isMobile ? styles.mobileLoginContainer : styles.loginContainer}>
         <div className={styles.logo}>
           <img src="../public/imagesAndSvgs/Group19448.svg" alt="AUTOMANIA Logo" />
         </div>
