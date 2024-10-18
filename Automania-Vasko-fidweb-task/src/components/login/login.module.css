@@ -106,53 +106,50 @@
 }
 
 @media (max-width: 768px) {
-    /* Container */
     .mobileLoginContainer {
-      max-width: 85% !important; /* Ensure container width is applied */
+      max-width: 85% !important; 
       padding: 30px !important;
       background-color: white;
       border-radius: 8px !important;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       text-align: center;
-      margin-top: 50px !important; /* Add margin for spacing */
+      margin-top: 50px !important; 
     }
   
-    /* Logo */
+    
     .logo {
       margin-bottom: 20px !important;
       margin-top: 10px !important;
     }
   
     .logo img {
-      width: 150px !important; /* Force the logo to resize */
+      width: 150px !important; 
     }
   
-    /* Header */
     .h2 {
       font-size: 18px !important;
       margin-bottom: 20px !important;
     }
   
-    /* Input Group */
     .inputGroup {
       display: flex !important;
       flex-direction: column !important;
-      align-items: flex-start !important; /* Align labels with input fields */
+      align-items: flex-start !important; 
       margin-bottom: 20px !important;
-      width: 100% !important; /* Full width for mobile */
+      width: 100% !important; 
     }
   
-    /* Labels */
+   
     .inputGroup label {
       font-size: 14px !important;
       margin-bottom: 8px !important;
       color: #333 !important;
     }
   
-    /* Input fields */
+    
     .inputGroup input {
       width: 100% !important;
-      max-width: 400px !important; /* Limit width to 400px */
+      max-width: 400px !important; 
       padding: 10px 12px !important;
       font-size: 14px !important;
       border: 1px solid #ccc !important;
@@ -166,7 +163,6 @@
       outline: none !important;
     }
   
-    /* Password field and eye icon */
     .passwordWrapper {
       position: relative !important;
       width: 100% !important;
@@ -210,7 +206,6 @@
       background-color: #0033cc !important;
     }
   
-    /* Error message */
     .error {
       font-size: 14px !important;
       color: red !important;
