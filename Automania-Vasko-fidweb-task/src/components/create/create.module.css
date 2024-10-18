@@ -245,7 +245,6 @@
   .error { color: red; }
   .success { color: green; }
 
-  /* Mobile styles for screens below 768px */
 @media (max-width: 768px) {
   .createListingContainer {
     max-width: 100%;
