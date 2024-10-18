@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
-import * as styles from './create.module.css'; // Import desktop styles
-import * as mobileStyles from './createMobile.module.css'; // Import mobile styles
+import * as styles from './create.module.css';
+import * as mobileStyles from './createMobile.module.css';
 import { useNavigate } from 'react-router';
-import { useWindowWidth } from '../../hooks/useWindowWidth'; // Import mobile detection hook
+import { useWindowWidth } from '../../hooks/useWindowWidth';
 
 export default function Create() {
   const [brand, setBrand] = useState('');
@@ -15,7 +15,7 @@ export default function Create() {
   const formRef = useRef(null);
   const hiddenSubmitButtonRef = useRef(null);
   const navigate = useNavigate();
-  const isMobile = useWindowWidth(); // Check if it's a mobile device
+  const isMobile = useWindowWidth();
 
   const truncateFileName = (name, maxLength = 20) => {
     if (name.length <= maxLength) return name;
