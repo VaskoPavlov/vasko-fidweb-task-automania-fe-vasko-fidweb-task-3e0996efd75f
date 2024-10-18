@@ -30,7 +30,7 @@ export default function Logout() {
           localStorage.removeItem('token');
           setUser(null);
           alert(result.payload.message);
-          navigate('/login');
+          navigate('/user/login');
         } else {
           alert('Failed to log out. Please try again.');
         }
