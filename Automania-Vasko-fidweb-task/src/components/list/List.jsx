@@ -9,32 +9,39 @@ export default function List() {
   const [pageNumber, setPageNumber] = useState(1);
   const [listings, setListings] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  const [totalFetched, setTotalFetched] = useState(0); 
+  const [totalFetched, setTotalFetched] = useState(0);
   const containerRef = useRef(null);
 
-  const pageSize = isMobile ? 4 : 15; 
-
+  const pageSize = isMobile ? 4 : 15;
+  
   const { listings: newListings, loading, error, totalDocs, hasNextPage } = useGetAllListings(pageNumber, pageSize, '', false);
+  const cap = totalDocs;
 
   useEffect(() => {
     if (!loading && newListings.length > 0) {
-      setListings(prevListings => [...prevListings, ...newListings]);
-      setTotalFetched(prevTotal => prevTotal + newListings.length); 
-      setIsFetching(false); 
+      const listingsToAdd = newListings.slice(0, Math.min(cap - totalFetched, newListings.length));
+      setListings(prevListings => [...prevListings, ...listingsToAdd]);
+      setTotalFetched(prevTotal => prevTotal + listingsToAdd.length);
+      setIsFetching(false);
     }
   }, [newListings, loading]);
+
+  useEffect(() => {
+    setPageNumber(1);
+    setListings([]);
+    setTotalFetched(0);
+  }, [isMobile]);
 
   const handleScroll = () => {
     const container = containerRef.current;
     if (
-      container.scrollTop + container.clientHeight >= container.scrollHeight - 1 && 
+      container.scrollTop + container.clientHeight >= container.scrollHeight - 1 &&
       !isFetching &&
       hasNextPage &&
-      totalFetched < totalDocs 
+      totalFetched < Math.min(cap, totalDocs)
     ) {
-      console.log('Fetching more listings...');
       setIsFetching(true);
-      setPageNumber(prevPageNumber => prevPageNumber + 1); 
+      setPageNumber(prevPageNumber => prevPageNumber + 1);
     }
   };
 
@@ -57,11 +64,11 @@ export default function List() {
   return (
     <div className={styles.carListings}>
       <div className={styles.scrollableContainer} ref={containerRef}>
-      <div className={styles.carListingsHeader}>
-        <h2 className={styles.carsNumber}>
-          CAR LISTINGS ({totalFetched}/{totalDocs})
-        </h2>
-      </div>
+        <div className={styles.carListingsHeader}>
+          <h2 className={styles.carsNumber}>
+            CAR LISTINGS ({totalFetched}/{Math.min(cap, totalDocs)})
+          </h2>
+        </div>
         <div className={styles.carGrid}>
           {listings.map(car => (
             <CarList key={car._id} {...car} />
